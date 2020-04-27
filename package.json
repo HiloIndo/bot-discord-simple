@@ -18,12 +18,12 @@
     "Discord",
     "Zealcord"
   ],
-  "author": "Zealcord",
+  "author": "HiloIndo",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zealcordNation/music-bot-example/issues"
+    "url": "https://github.com/HiloIndo/bot-discord-simple/issues"
   },
-  "homepage": "https://github.com/zealcordNation/music-bot-example#readme",
+  "homepage": "https://github.com/HiloIndo/bot-discord-simple/issues",
   "dependencies": {
     "discord.js": "^11.5.1",
     "express": "^4.17.1",
