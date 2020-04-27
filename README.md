@@ -1,4 +1,4 @@
-# music-bot-example
+# bot discord simple
 
 > Example of a Music Bot project modified by Zealcord, made by DevYukine
 
