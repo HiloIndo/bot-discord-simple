@@ -17,7 +17,7 @@ Bot Discord Simple Edit by HiloIndo
 
 ## Author
 
-> Github [iCrawl](https://github.com/iCrawl)
-> GitHub [zealcordNation](https://github.com/zealcordNation)
+> Github [iCrawl](https://github.com/iCrawl)\n
+> GitHub [zealcordNation](https://github.com/zealcordNation)\n
 > Github [HiloIndo](https://github.com/HiloIndo)
 
