@@ -15,6 +15,10 @@ Bot Discord Simple Edit by HiloIndo
 
 > Video [Tutorial](https://youtu.be/3jZ5vnv-LZc?t=7)
 
+# Project Update
+
+> Update Link [Update](https://github.com/HiloIndo/update-bots-discord)
+
 ## Author
 
 > Github [iCrawl](https://github.com/iCrawl)
