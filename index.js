@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const { Client, Util } = require("discord.js");
-const { TOKEN, PREFIX, GOOGLE_API_KEY } = require("./config");
+const { TOKEN, PREFIX, GOOGLE_API_KEY, INSTAGRAM,  ID, AUTHOR} = require("./config");
 const YouTube = require("simple-youtube-api");
 const ytdl = require("ytdl-core");
 const bot = new Client({ disableEveryone: true });
@@ -10,9 +10,7 @@ require("./server.js");
 const youtube = new YouTube(GOOGLE_API_KEY);
 const queue = new Map();
 const client = new Discord.Client();
-const author = '';
-const id = '';
-const instagram = '';
+const create = `${moment.utc(user.createdAt).format("dddd, MMMM Do YYYY")}`;
 
 
 ////////////////////////////////////////////////////CLIENT////////////////////////////////////////////////////////////////////
@@ -40,7 +38,7 @@ client.on("message", message => {
       .setTitle("Congratulation")
       .setDescription("You Level Up!! `" + userInfo.level + "`" )
         message.reply(embed).then(message => {
-            message.delete(10000);
+            message.delete();
         })
     }
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
@@ -209,10 +207,6 @@ bot.on("message", async message => {
   if (message.author.bot) return;
   if (!message.guild) return;
   
-  if (message.content.startsWith("emoji")) {
-    message.channel.send( emoji("528208256124846111") + " Ini Kah")
-  }
-  
   if(message.content == client.user.toString()) {
 message.reply("Hi, my name is " + bot.user.tag + "\nIf You Want To Use Me With `!!!`")
   }
@@ -366,6 +360,33 @@ bot.on("reconnecting", () => console.log("I am reconnecting now..."));
 
 bot.on("ready", function() {
   console.log(`${bot.user.tag} READY!`);
+  
+  function kalender() {
+    var date = moment(Date.now()).utcOffset("+0700").format("Do - MMMM - YYYY");
+    var WIB = moment(Date.now()).utcOffset("+0700").format("LT");
+    var WITA = moment(Date.now()).utcOffset("+0800").format("LT");
+    var WIT = moment(Date.now()).utcOffset("+0900").format("LT")
+    var day = moment(Date.now()).utcOffset("+0700").format('dddd');
+    
+    //enter the guild / server id
+    let Guild = bot.guilds.get("")
+    
+    //input voice id
+    let voicedate = Guild.channels.get("")
+    let voicewib = Guild.channels.get("")
+    let voicewita = Guild.channels.get("")
+    let voicewit = Guild.channels.get("")
+    let voiceday = Guild.channels.get("")
+    
+    //enter the name according to taste
+    voicewib.setName(`╭⏰★。ͅ-ֵ┃WIB ` + jamWIB);
+    voicewita.setName(`│⏰★。ͅ-ֵ┃WITA ` + jamWITA);
+    voicewit.setName(`│⏰★。ͅ-ֵ┃WIT ` + jamWIT);
+    voicedate.setName(`│📆★。ͅ-ֵ┃` + day);
+    voicedate.setName(`╰📆★。ͅ-ֵ┃` + tanggal);
+    
+    }
+    setInterval(kalender, 10000);
 });
 
 bot.on("message", function(message) {
@@ -378,11 +399,7 @@ bot.on("message", function(message) {
 
   //command
 
-  if (command === "bot" || command === "infobot") {
-    if (message.author.id !== `${id}`)
-      return message.channel.send(
-        "<@" + message.author.id + ">" + " You Not Owner"
-      );
+  if (command === "bot" || command === "infobot" || command === "status" || command === "stats") {
 
     let uptime = bot.uptime;
 
@@ -408,18 +425,7 @@ bot.on("message", function(message) {
       .setColor("#7289DA")
       .setAuthor(bot.user.tag, bot.user.displayAvatarURL)
       .setDescription(
-        "```Uptime  : " +
-          uptime +
-          "\nMemory  : " +
-          Math.round(process.memoryUsage().heapUsed / 1024 / 1024) +
-          "Mb\nCPU     : " +
-          cpupercent +
-          "\nLibrary : discord.js\nServer  : " +
-          bot.guilds.size +
-          "\nUsers   : " +
-          bot.users.size +
-          "```"
-      )
+        "```Uptime  : " + uptime + "\nMemory  : " + Math.round(process.memoryUsage().heapUsed / 1024 / 1024) + "Mb\nCPU     : " + cpupercent + "\nLibrary : discord.js\nServer  : " + bot.guilds.size + "\nUsers   : " + bot.users.size + "```\n__**⚙️Developer⚙️**__\n•" + author +  "•")
       .setTimestamp()
       .setFooter(
         `Pesan Dari : ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL);
@@ -428,7 +434,7 @@ bot.on("message", function(message) {
   }
 
   if (command === "restart" || command === "r") {
-    if (message.author.id !== `${id}`)
+    if (message.author.id !== `${ID}`)
       return message.channel.send("You Not Owner");
     let embed = new Discord.RichEmbed()
       .setColor("#7289DA")
@@ -492,17 +498,6 @@ bot.on("message", async msg => {
       .catch(error =>
         msg.reply(`Ga Bisa Ngehapus Pesan Karena : ${error}`)
       );
-  }
-  
-  
-  if (command === "vote") {
-    let embed = new Discord.RichEmbed()
-    .setColor("#7289DA")
-    .setTitle("Support")
-    .setDescription("https://top.gg/bot/694951596286804050/vote\n\n" + bot.user.tag + "\n\n__**Fitur Nikki**__\n•Music\n•Moderator\n•Leveling\n•Fun\n\nSupport Me!")
-    .setTimestamp()
-    .setFooter(`Message From : ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL);
-    msg.channel.send(embed);
   }
   
   if (command === "avatarguild" || command === "avaguild") {
@@ -682,7 +677,7 @@ bot.on("message", async msg => {
       .setColor("#7289DA")
       .setAuthor(bot.user.tag, bot.user.displayAvatarURL)
       .setDescription(
-        "__**AUTHOR : " + author + "**__\n__**UPTIME : " + uptime + "**__\n__**CREATE : 2/4/2020**__\n__**PREFIX : " + PREFIX + "**__\n\n__**MUSIK**__ \n``play, skip, stop, pause, volume [1/100], nowplaying, queue, join, leave``\n\n__**ADMIN**__\n``ban, kick, warn``\n\n__**GENERAL**__\n``say, avatar, profile, avatarguild``\n\n__**UTILITY**__\n``ping, server``\n\n__**LEVELS**__\n``level``\n\n__**OWNER**__\n``restart, bot``\n\n__**Tutorial Create Bots**__\n``tutorialbot``\n\n__**CONTACT**__\n`Discord : " + author + "\nIG : " + instagram + "\nIF THERE IS AN ERROR CONTACT THE OWNER / WRITER!`")
+        "__**AUTHOR : " + author + "**__\n__**UPTIME : " + uptime + "**__\n__**CREATE : " + create + "**__\n__**PREFIX : " + PREFIX + "**__\n\n__**MUSIK**__ \n``play, skip, stop, pause, volume [1/100], nowplaying, queue, join, leave``\n\n__**ADMIN**__\n``ban, kick, warn``\n\n__**GENERAL**__\n``say, avatar, profile, avatarguild``\n\n__**UTILITY**__\n``ping, server``\n\n__**LEVELS**__\n``level``\n\n__**OWNER**__\n``restart, bot``\n\n__**Tutorial Create Bots**__\n``tutorialbot``\n\n__**CONTACT**__\n`Discord : " + author + "\nIG : " + instagram + "\nIF THERE IS AN ERROR CONTACT THE OWNER / WRITER!`")
       .setTimestamp()
       .setFooter(
         `Message From : ${msg.author.username}#${msg.author.discriminator}`,
